@@ -1,0 +1,23 @@
+{
+  "name": "cpu-performance-case-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnjanaPathirana99/CPU-Performance-Case-Study.git"
+  },
+  "author": "Anjana@BuddyDevs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnjanaPathirana99/CPU-Performance-Case-Study/issues"
+  },
+  "homepage": "https://github.com/AnjanaPathirana99/CPU-Performance-Case-Study#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-wmi": "^0.0.5"
+  }
+}
