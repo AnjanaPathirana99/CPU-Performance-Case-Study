@@ -3,7 +3,7 @@ const wmi = require("node-wmi");
 const app = express();
 const fiftyPercent = 0.5;
 
-app.get("/processes", (req, res) => {
+app.get("/api/processes", (req, res) => {
   wmi.Query(
     {
       class: "Win32_Process",
