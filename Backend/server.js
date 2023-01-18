@@ -17,7 +17,7 @@ app.get("/api/processes", (req, res) => {
         },
         function (error, osResults) {
           var totalMemory = osResults[0].TotalPhysicalMemory;
-          var memoryThreshold = totalMemory * fiftyPercent * 0.02;
+          var memoryThreshold = totalMemory * fiftyPercent;
           var highMemoryProcesses = processResults.filter(function (p) {
             return p.WorkingSetSize > memoryThreshold;
           });
