@@ -3,7 +3,7 @@ import axios from "axios";
 
 class CpuUsageView extends Component {
   state = {
-    cpuProcesses: cpuProcesses,
+    cpuProcesses: [],
   };
 
   async componentDidMount() {
