@@ -2,13 +2,18 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class CpuUsageView extends Component {
-  state = {};
+  state = {
+    cpuProcesses: [],
+  };
 
-  componentDidMount() {
-    axios.get("http://localhost:3000/api/processes");
+  async componentDidMount() {
+    const { data: cpuProcesses } = await axios.get(
+      "http://localhost:3000/api/processes"
+    );
+    this.setState({ cpuProcesses });
   }
   render() {
-    return <h1>Hi</h1>;
+    return <h1>{[this.state.cpuProcesses]}</h1>;
   }
 }
 
