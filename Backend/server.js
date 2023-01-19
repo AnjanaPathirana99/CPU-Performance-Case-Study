@@ -10,7 +10,7 @@ app.get("/api/processes", (req, res) => {
   wmi.Query(
     {
       class: "Win32_Process",
-      properties: ["Name", "WorkingSetSize"],
+      properties: ["ProcessId", "Name", "WorkingSetSize"],
     },
     function (error, processResults) {
       wmi.Query(
