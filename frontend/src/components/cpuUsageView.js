@@ -2,7 +2,8 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
 
-function ProcessTable() {
+function CpuUsageTable() {
+  const cpuUsagePercentageConstant = 2 ** 20;
   const [processes, setProcesses] = useState([]);
   useEffect(() => {
     axios
@@ -21,12 +22,14 @@ function ProcessTable() {
           <tr>
             <th>Process Name</th>
             <th>Memory Usage</th>
+            <th>Memory Usage (%)</th>
           </tr>
         </thead>
         <tbody>
           {processes.map((process) => (
             <tr key={process.ProcessId}>
               <td>{process.Name}</td>
+              <td>{process.WorkingSetSize}</td>
               <td>{process.WorkingSetSize}</td>
             </tr>
           ))}
@@ -36,4 +39,4 @@ function ProcessTable() {
   );
 }
 
-export default ProcessTable;
+export default CpuUsageTable;
