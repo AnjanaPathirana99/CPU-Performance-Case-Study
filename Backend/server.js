@@ -1,13 +1,16 @@
 const express = require("express");
+const cors = require("cors");
 const wmi = require("node-wmi");
 const app = express();
 const fiftyPercent = 0.5;
+
+app.use(cors());
 
 app.get("/api/processes", (req, res) => {
   wmi.Query(
     {
       class: "Win32_Process",
-      properties: ["Name", "WorkingSetSize"],
+      properties: ["ProcessId", "Name", "WorkingSetSize"],
     },
     function (error, processResults) {
       wmi.Query(
@@ -17,7 +20,7 @@ app.get("/api/processes", (req, res) => {
         },
         function (error, osResults) {
           var totalMemory = osResults[0].TotalPhysicalMemory;
-          var memoryThreshold = totalMemory * fiftyPercent;
+          var memoryThreshold = totalMemory * fiftyPercent * 0.02; //development purpose made this 0.01
           var highMemoryProcesses = processResults.filter(function (p) {
             return p.WorkingSetSize > memoryThreshold;
           });
@@ -27,6 +30,7 @@ app.get("/api/processes", (req, res) => {
     }
   );
 });
+
 app.listen(3000, () => {
   console.log("Server started on port 3000");
 });
