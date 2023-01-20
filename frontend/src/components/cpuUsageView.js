@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
+import Table from "react-bootstrap/Table";
 
 function ProcessTable() {
   const [processes, setProcesses] = useState([]);
@@ -14,22 +15,24 @@ function ProcessTable() {
       });
   }, []);
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Process Name</th>
-          <th>Memory Usage</th>
-        </tr>
-      </thead>
-      <tbody>
-        {processes.map((process) => (
-          <tr key={process.ProcessId}>
-            <td>{process.Name}</td>
-            <td>{process.WorkingSetSize}</td>
+    <Fragment>
+      <Table>
+        <thead>
+          <tr>
+            <th>Process Name</th>
+            <th>Memory Usage</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {processes.map((process) => (
+            <tr key={process.ProcessId}>
+              <td>{process.Name}</td>
+              <td>{process.WorkingSetSize}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </Fragment>
   );
 }
 
