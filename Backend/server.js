@@ -20,15 +20,16 @@ function checkCpuUsage() {
       wmi.Query(
         {
           class: "Win32_ComputerSystem",
-          properties: ["TotalPhysicalMemory"],
+          properties: ["TotalPhysicalMemory", "Name"],
         },
         function (error, osResults) {
           var totalMemory = osResults[0].TotalPhysicalMemory;
           var memoryThreshold = totalMemory * fiftyPercent * 0.02; //development purpose made this 0.01
+          var pcName = osResults[0].Name;
           var highMemoryProcesses = processResults.filter(function (p) {
             return p.WorkingSetSize > memoryThreshold;
           });
-          socket.emit("çpu_usage", highMemoryProcesses);
+          socket.emit("çpu_usage", highMemoryProcesses, pcName);
         }
       );
     }
